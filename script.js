@@ -61,3 +61,27 @@ function showOpportunities(path) {
     data[path].map(x => "<li>" + x + "</li>").join("") +
     "</ul>";
 }
+function generateAI() {
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  let plan = `
+Hello ${user.name} 👋
+
+Your AI Plan for ${user.goal}:
+
+1. Start with ${user.interest} basics
+2. Join competitions
+3. Build portfolio
+4. Improve English
+
+Weekly plan:
+- 1h learning
+- 1 project
+- 1 competition practice
+
+Keep going 🚀
+  `;
+
+  document.getElementById("result").innerHTML =
+    "<h3>AI Plan</h3><pre>" + plan + "</pre>";
+}
