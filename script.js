@@ -1,87 +1,41 @@
-function start() {
-  document.body.innerHTML = `
-    <h1>Mentoria Hub 🚀</h1>
-    <p>Choose your path:</p>
-
-    <button onclick="show('English')">English</button>
-    <button onclick="show('STEM')">STEM</button>
-    <button onclick="show('Business')">Business</button>
-
-    <div id="result"></div>
-  `;
-}
-
-function show(path) {
-  let data = {
-    English: ["FLEX program", "IELTS prep", "Essay writing competitions"],
-    STEM: ["Olympiads", "Hackathons", "NASA challenges"],
-    Business: ["Startup contests", "Case competitions", "Young Entrepreneurs programs"]
-  };
-
-  document.getElementById("result").innerHTML =
-    "<h3>Opportunities for " + path + "</h3><ul>" +
-    data[path].map(i => "<li>" + i + "</li>").join("") +
-    "</ul>";
-}
 function saveProfile() {
-  let user = {
-    name: document.getElementById("name").value,
-    age: document.getElementById("age").value,
-    interest: document.getElementById("interest").value,
-    goal: document.getElementById("goal").value
-  };
+    const user = {
+        name: document.getElementById("name").value,
+        age: document.getElementById("age").value,
+        country: document.getElementById("country").value,
+        interest: document.getElementById("interest").value,
+        goal: document.getElementById("goal").value
+    };
 
-  localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("user", JSON.stringify(user));
 
-  showDashboard(user);
+    document.getElementById("result").innerHTML = `
+        <h2>Hello, ${user.name}! 👋</h2>
+
+        <p><b>Age:</b> ${user.age}</p>
+        <p><b>Country:</b> ${user.country}</p>
+        <p><b>Interest:</b> ${user.interest}</p>
+        <p><b>Dream university:</b> ${user.goal}</p>
+
+        <br>
+
+        <button onclick="analyzeProfile()">
+            Analyze my profile 🤖
+        </button>
+
+        <div id="ai-result"></div>
+    `;
 }
 
-function showDashboard(user) {
-  document.body.innerHTML = `
-    <h1>Hello ${user.name}</h1>
-    <h2>Your path: ${user.interest}</h2>
+function analyzeProfile() {
+    const user = JSON.parse(localStorage.getItem("user"));
 
-    <button onclick="showOpportunities('${user.interest}')">
-      See Opportunities
-    </button>
+    document.getElementById("ai-result").innerHTML = `
+        <h3>Analyzing...</h3>
 
-    <div id="result"></div>
-  `;
-}
-
-function showOpportunities(path) {
-  let data = {
-    English: ["IELTS", "FLEX", "Essay contests"],
-    STEM: ["Olympiads", "Hackathons", "NASA programs"],
-    Business: ["Startups", "Case competitions", "Internships"]
-  };
-
-  document.getElementById("result").innerHTML =
-    "<ul>" +
-    data[path].map(x => "<li>" + x + "</li>").join("") +
-    "</ul>";
-}
-function generateAI() {
-  const user = JSON.parse(localStorage.getItem("user"));
-
-  let plan = `
-Hello ${user.name} 👋
-
-Your AI Plan for ${user.goal}:
-
-1. Start with ${user.interest} basics
-2. Join competitions
-3. Build portfolio
-4. Improve English
-
-Weekly plan:
-- 1h learning
-- 1 project
-- 1 competition practice
-
-Keep going 🚀
-  `;
-
-  document.getElementById("result").innerHTML =
-    "<h3>AI Plan</h3><pre>" + plan + "</pre>";
+        <p>
+        AI will soon create a personal roadmap for
+        <b>${user.goal}</b>.
+        </p>
+    `;
 }
