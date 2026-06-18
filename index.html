@@ -1,35 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Mentoria Hub</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentoria Hub</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <h1>Mentoria Hub</h1>
+<h1>Mentoria Hub 🚀</h1>
 
-  <p>Find opportunities for your future</p>
+<p>Find opportunities for your future.</p>
 
-  <button>Start</button>
-<button onclick="start()">Start</button>
-<script src="script.js"></script>
-</body>
-</html>
-<h1>Mentoria Hub</h1>
+<input type="text" id="name" placeholder="Your name">
 
-<input id="name" placeholder="Your name">
-<input id="age" placeholder="Your age">
+<input type="number" id="age" placeholder="Your age">
+
+<input type="text" id="country" placeholder="Your country">
+
+<input type="text" id="goal" placeholder="Dream university (MIT, Yale...)">
 
 <select id="interest">
-  <option>English</option>
-  <option>STEM</option>
-  <option>Business</option>
+    <option value="">Choose your interest</option>
+    <option value="English">English</option>
+    <option value="STEM">STEM</option>
+    <option value="Business">Business</option>
 </select>
 
-<input id="goal" placeholder="Your goal (Yale, MIT...)">
+<br><br>
 
-<button onclick="saveProfile()">Start</button>
+<button onclick="start()">Start</button>
+
 <div id="result"></div>
 
-<button onclick="generateAI()">Generate AI Plan 🤖</button>
 <script src="script.js"></script>
+
+</body>
+</html>
